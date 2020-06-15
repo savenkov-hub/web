@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Флудилка</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='themify-icons.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="logout">
+        <a href="/logout">Выйти</a>
+    </div>
+    <h2 style="text-align: center">УРЕЗАННАЯ ВЕРСИЯ ЧАТА</h2>
+    <form id='message' method="post" action="/add_message">
+        <input type="text"name="text" required placeholder="оставьте сообщение">
+        <button type="submit" class="ti-control-forward"></button>
+    </form>
+
+    <div calss="messages">
+    <h3></h3>
+    {% for message in messages[::-1] %}
+    <div class="message">
+        <p>{{ message.text }}</p>
+        <span>{% for tag in message.tags %}
+            {{ tag.text }}
+        {% endfor %}</span>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+</body>
+</html>

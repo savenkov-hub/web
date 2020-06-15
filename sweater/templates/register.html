@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container_login_register">
+    <div class="container">
+        <h1 style="text-align: center">Регистрация</h1>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul style="text-align: center" class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <input type="text" name="login" placeholder="Имя">
+            <input type="password" name="password" placeholder="Пароль">
+            <input type="password" name="password2" placeholder="Повтор пароля">
+            <a href="{{ url_for('login_page') }}">Авторизация</a>
+            <input type="submit" value="Зарегестрироваться">
+        </form>
+    </div>
+</div>
+</body>
+</html>
